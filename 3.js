@@ -20,16 +20,14 @@ let result = []
 let node = {}
 let entry = 2
 let destination = 5;
-function dealWith(entry){
+function dealWith(entry,path){
   if(entry == destination) return [[entry]]
-  if(node[entry]) return node[entry]
   let items = list[entry]
-  node[entry] = node[entry] || []
   let content = []
   for(let index=0;index<items.length;index++){
     let value = items[index]
-    if(value == entry) continue
-    let item = value == destination ? [[value]] :  dealWith(items[index])
+    if(path.includes(value)) continue
+    let item = value == destination ? [[value]] :  dealWith(items[index],path.concat(value))
     let info = [entry]
     content = content.concat(item.filter(x=>!x.includes(entry)).map(x=>info.concat(x)))
     node[entry] = content
@@ -39,7 +37,7 @@ function dealWith(entry){
 
 
 let time = Date.now()
-let data = dealWith(entry)
+let data = dealWith(entry,[entry])
 console.log(node)
 console.log(data)
 console.log((Date.now()-time)/1000)
