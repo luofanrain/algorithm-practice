@@ -1,13 +1,13 @@
 // 贪心算法 每次选当前最优解，直到目的达成
-function mergeALL(left,right){
+const mergeALL = (left,right) => {
   return  new Set([...left, ...right])
 }
 
-function mergeHave(left,right){
+const mergeHave = (left,right) => {
   return new Set([...left].filter(x => right.has(x)))
 }
 
-function mergeNotHave(left,right){
+const mergeNotHave = (left,right) => {
   let currentLeft = new Set([...left].filter(x => !right.has(x)))
   let currentRight = new Set([...right].filter(x => !left.has(x)))
   return mergeALL(currentLeft,currentRight)
@@ -27,7 +27,7 @@ library.forEach((value,index)=>{
   allInfos.set(index,new Set(value))
 })
 let result = []
-function dealWith(){
+const dealWith = () => {
   while(list.size>0){
     let coverd = new Set()
     let bestGroup = new Set()

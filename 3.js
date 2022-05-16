@@ -20,7 +20,7 @@ let result = []
 let node = {}
 let entry = 2
 let destination = 5;
-function dealWith(entry,path){
+const dealWith = (entry,path) => {
   if(entry == destination) return [[entry]]
   let items = list[entry]
   let content = []
